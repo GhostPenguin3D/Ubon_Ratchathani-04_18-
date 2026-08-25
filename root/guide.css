@@ -45,8 +45,7 @@ a { color: inherit; }
   position: relative;
   width: fit-content;
   max-width: 100%;
-  overflow: hidden;
-  animation: type-title 2.2s steps(24, end) both;
+  animation: title-enter .8s ease-out both;
 }
 .hero h1::after {
   content: '';
@@ -98,9 +97,9 @@ a { color: inherit; }
 .tip { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .tip:hover { transform: translateY(-6px); box-shadow: 0 14px 26px rgba(29,58,48,.12); border-color: #c1d2c5; }
 footer { border-top: 1px solid var(--line); padding: 22px max(22px, calc((100% - 1160px) / 2)); color: var(--muted); font-size: .8rem; }
-@keyframes type-title {
-  from { max-width: 0; opacity: .35; }
-  to { max-width: 100%; opacity: 1; }
+@keyframes title-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes blink-cursor {
   0%, 45% { opacity: 1; }
