@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ubon Ratchathani Travel Guide</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
       :root {
         --green: #2f6b3f;
         --green-dark: #1f4d2d;
@@ -16,6 +18,8 @@
       * {
         box-sizing: border-box;
       }
+
+      html { scroll-behavior: smooth; }
 
       body {
         font-family: Arial, Helvetica, sans-serif;
@@ -320,50 +324,538 @@
       @media (prefers-reduced-motion: reduce) {
         .chip, .intro-card, .taste-item, .feature-card, .feature-media, .feature-media img, .btn { animation: none; transition: none; }
       }
+
+      :root {
+        --ink: #162d2b;
+        --soft-ink: #58706b;
+        --yellow: #ffd34e;
+        --paper: #f5f1e7;
+        --forest: #123f38;
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', 'Kanit', sans-serif;
+        color: var(--ink);
+        background: var(--forest);
+      }
+
+      .hero {
+        min-height: 100svh;
+        height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: 0;
+        padding: 0;
+        overflow: hidden;
+        isolation: isolate;
+        background: var(--forest);
+      }
+
+      .hero-topbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px max(24px, calc((100% - 1160px) / 2));
+        color: rgba(255, 255, 255, .92);
+      }
+
+      .hero-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        letter-spacing: .04em;
+      }
+
+      .hero-brand::before {
+        content: '';
+        width: 9px;
+        height: 9px;
+        border: 2px solid var(--yellow);
+        border-radius: 50%;
+      }
+
+      .hero-count {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, .7);
+        font-size: .68rem;
+        letter-spacing: .18em;
+      }
+
+      .hero-count::before {
+        content: '';
+        width: 42px;
+        height: 1px;
+        background: rgba(255, 255, 255, .55);
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .04) 38%, rgba(0, 0, 0, .62)),
+          url('IMG/UBON.jpg') center 25%/cover no-repeat;
+        opacity: calc(1 - (var(--drawer-progress, 0) * .58));
+        transform: translateY(calc(var(--drawer-progress, 0) * -2%)) scale(calc(1 + (var(--drawer-progress, 0) * .025)));
+        transform-origin: center center;
+        will-change: opacity, transform;
+      }
+
+      html[data-motion="minimal"] .hero-image {
+        opacity: calc(1 - (var(--drawer-progress, 0) * .3));
+        transform: translateY(calc(var(--drawer-progress, 0) * -1%));
+      }
+      html[data-motion="minimal"] .hero-side { animation: none; }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(110deg, rgba(0, 0, 0, .22), transparent 62%);
+      }
+
+      .hero h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        margin-bottom: 24px;
+        font-family: 'Kanit', sans-serif;
+        font-size: clamp(3.8rem, 13vw, 9.4rem);
+        font-weight: 600;
+        line-height: .9;
+        letter-spacing: -.035em;
+        text-shadow: 0 10px 34px rgba(0, 0, 0, .28);
+      }
+
+      .hero h1::after { display: none; }
+      .hero h1 strong { color: var(--yellow); font-weight: 600; }
+      .hero-kicker {
+        color: rgba(255, 255, 255, .82);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: clamp(.62rem, 1.2vw, .82rem);
+        font-weight: 600;
+        letter-spacing: .25em;
+        line-height: 1.2;
+      }
+      .hero-title-sub {
+        color: rgba(255, 255, 255, .94);
+        font-size: clamp(1.08rem, 2.2vw, 1.65rem);
+        font-weight: 400;
+        letter-spacing: .08em;
+      }
+
+      .hero p {
+        max-width: 620px;
+        margin-bottom: 28px;
+        color: rgba(255, 255, 255, .86);
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .hero .chip-row { gap: 9px; margin-bottom: 10px; }
+      .chip {
+        padding: 8px 13px;
+        border-color: rgba(255, 255, 255, .3);
+        background: rgba(255, 255, 255, .13);
+        font-size: .82rem;
+      }
+      .chip:first-child { border-color: var(--yellow); color: var(--yellow); }
+
+      .container {
+        max-width: none;
+        margin: 0;
+        padding: 82px 20px 88px;
+        position: relative;
+        z-index: 1;
+        background: var(--forest);
+        border-radius: 40px 40px 0 0;
+        box-shadow: 0 -30px 70px rgba(2, 28, 22, .34);
+      }
+
+      .container::before {
+        content: '';
+        position: absolute;
+        top: 24px;
+        left: 50%;
+        width: 46px;
+        height: 3px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .56);
+        transform: translateX(-50%);
+      }
+
+      .intro-card {
+        max-width: 1160px;
+        margin: 0 auto 20px;
+        padding: 36px;
+        border: 1px solid rgba(255, 255, 255, .14);
+        border-radius: 24px;
+        background: rgba(255, 253, 248, .98);
+        box-shadow: 0 18px 42px rgba(2, 28, 22, .16);
+      }
+      .intro-card h2, .feature-copy h3, .detail-section h3 { font-family: 'Kanit', sans-serif; }
+      .intro-card h2 { color: var(--forest); font-size: 1.8rem; letter-spacing: .01em; }
+      .intro-card h2::before {
+        content: '01 / START HERE';
+        display: block;
+        margin-bottom: 8px;
+        color: #4e9b7d;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: .66rem;
+        font-weight: 700;
+        letter-spacing: .16em;
+      }
+
+      .drawer-summary {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 20px;
+        max-width: 1160px;
+        margin: 0 auto 16px;
+        color: rgba(255, 255, 255, .84);
+      }
+
+      .drawer-layout {
+        display: grid;
+        grid-template-columns: minmax(150px, 190px) minmax(0, 1160px) minmax(150px, 190px);
+        align-items: start;
+        gap: 22px;
+        max-width: 1560px;
+        margin: 0 auto;
+      }
+
+      .drawer-layout .intro-card { width: 100%; }
+      .drawer-side {
+        padding-top: 18px;
+        color: rgba(255, 255, 255, .7);
+      }
+
+      .drawer-side-label {
+        display: block;
+        margin-bottom: 12px;
+        color: rgba(255, 255, 255, .5);
+        font-size: .61rem;
+        font-weight: 700;
+        letter-spacing: .16em;
+      }
+
+      .drawer-side p {
+        margin: 0;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.55;
+      }
+
+      .drawer-side small {
+        display: block;
+        margin-top: 12px;
+        color: rgba(255, 255, 255, .52);
+        font-size: .72rem;
+        line-height: 1.65;
+      }
+
+      .drawer-photo {
+        display: block;
+        overflow: hidden;
+        border-radius: 16px;
+        color: white;
+        text-decoration: none;
+        background: rgba(255, 255, 255, .1);
+      }
+
+      .drawer-photo img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1.15;
+        object-fit: cover;
+        transition: transform .6s ease, filter .6s ease;
+      }
+
+      .drawer-photo:hover img { transform: scale(1.07); filter: saturate(1.15); }
+      .drawer-photo span { display: block; padding: 10px 11px 12px; font-family: 'Kanit', sans-serif; font-size: .84rem; }
+
+      .place-index {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .place-index a {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        padding: 7px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .14);
+        color: rgba(255, 255, 255, .76);
+        font-family: 'Kanit', sans-serif;
+        font-size: .88rem;
+        line-height: 1.4;
+        text-decoration: none;
+        transition: color .2s ease, padding-left .2s ease;
+      }
+
+      .place-index a::before { content: '0' counter(place); color: var(--yellow); font-family: 'Plus Jakarta Sans', sans-serif; font-size: .63rem; }
+      .place-index { counter-reset: place; }
+      .place-index a { counter-increment: place; }
+      .place-index a:hover, .place-index a:focus-visible { padding-left: 5px; color: white; }
+
+      .drawer-summary p { max-width: 420px; margin: 0; font-size: .82rem; line-height: 1.65; }
+      .drawer-summary strong { display: block; margin-bottom: 3px; color: white; font-family: 'Kanit', sans-serif; font-size: 1.25rem; font-weight: 500; }
+      .drawer-stats { display: flex; gap: 24px; }
+      .drawer-stat { padding-left: 14px; border-left: 1px solid rgba(255, 255, 255, .3); }
+      .drawer-stat b { display: block; color: var(--yellow); font-family: 'Kanit', sans-serif; font-size: 1.35rem; font-weight: 500; line-height: 1; }
+      .drawer-stat span { display: block; margin-top: 5px; color: rgba(255, 255, 255, .66); font-size: .64rem; letter-spacing: .08em; }
+
+      .intro-grid p, .intro-grid li, .feature-copy p { color: var(--soft-ink); }
+      .feature-card {
+        position: relative;
+        border-radius: 18px;
+        border-color: rgba(28, 85, 71, .12);
+        background: rgba(255, 253, 248, .96);
+      }
+
+      .consent {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        width: min(520px, calc(100% - 40px));
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, .16);
+        border-radius: 16px;
+        background: rgba(10, 48, 40, .94);
+        color: rgba(255, 255, 255, .86);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, .25);
+        backdrop-filter: blur(18px);
+        animation: consent-in .6s .5s ease-out both;
+      }
+
+      .consent p { margin: 0; font-size: .78rem; line-height: 1.55; }
+      .consent strong { display: block; margin-bottom: 2px; color: white; font-family: 'Kanit', sans-serif; font-size: .98rem; font-weight: 500; }
+      .consent-actions { display: flex; flex-shrink: 0; gap: 7px; }
+      .consent button {
+        border: 0;
+        border-radius: 999px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font: 500 .78rem 'Kanit', sans-serif;
+      }
+      .consent-allow { background: var(--yellow); color: #173d35; }
+      .consent-minimal { background: rgba(255, 255, 255, .12); color: white; }
+      .consent.is-hidden { display: none; }
+
+      @keyframes consent-in {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .feature-list {
+        max-width: 1160px;
+        margin: 0 auto;
+        grid-column: 1 / -1;
+      }
+
+      @media (max-width: 700px) {
+        .hero { min-height: 100svh; height: 100svh; }
+        .hero-topbar { padding: 20px 22px; }
+        .hero-count { display: none; }
+        .hero-image { background-position: center 25%; }
+        .hero h1 { font-size: clamp(3.4rem, 19vw, 6.4rem); }
+        .hero-title-sub { letter-spacing: .03em; }
+        .container { margin-top: 0; padding-left: 14px; padding-right: 14px; }
+        .intro-card { padding: 26px 22px; }
+        .drawer-summary { grid-template-columns: 1fr; align-items: start; gap: 14px; padding: 0 8px; }
+        .drawer-stats { gap: 18px; }
+        .drawer-layout { display: block; }
+        .drawer-side { display: none; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-image, .consent { opacity: 1; transform: none; animation: none; }
+      }
+
+      /* Premium editorial direction */
+      :root {
+        --ink: #17332e;
+        --soft-ink: #60736d;
+        --yellow: #d7c184;
+        --paper: #f1eee4;
+        --forest: #082e28;
+      }
+
+      body { background: var(--forest); }
+      .hero-topbar { justify-content: center; }
+      .hero-menu {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px;
+        border: 1px solid rgba(255, 255, 255, .28);
+        border-radius: 999px;
+        background: rgba(4, 35, 30, .24);
+        backdrop-filter: blur(12px);
+      }
+      .hero-menu a {
+        position: relative;
+        padding: 9px 18px;
+        border-radius: 999px;
+        color: rgba(255, 255, 255, .78);
+        font-family: 'Kanit', sans-serif;
+        font-size: .86rem;
+        font-weight: 400;
+        letter-spacing: .04em;
+        text-decoration: none;
+        transition: color .25s ease, background .25s ease, transform .25s ease;
+      }
+      .hero-menu a::after {
+        content: '';
+        position: absolute;
+        right: 18px;
+        bottom: 5px;
+        left: 18px;
+        height: 1px;
+        background: var(--yellow);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform .25s ease;
+      }
+      .hero-menu a:hover, .hero-menu a:focus-visible { color: white; background: rgba(255, 255, 255, .12); transform: translateY(-1px); }
+      .hero-menu a:hover::after, .hero-menu a:focus-visible::after { transform: scaleX(1); }
+      .hero-image {
+        background:
+          linear-gradient(180deg, rgba(2, 22, 18, .12), rgba(2, 22, 18, .01) 42%, rgba(2, 22, 18, .08)),
+          url('IMG/UBON.jpg') center 25%/cover no-repeat;
+      }
+      .hero::before { background: linear-gradient(110deg, rgba(4, 39, 32, .08), transparent 64%); }
+      .container { background: var(--forest); }
+      .drawer-summary strong { color: #f4f1e7; }
+      .drawer-stat b { color: var(--yellow); }
+      .drawer-side-label, .intro-card h2::before { color: var(--yellow); }
+      .intro-card { background: var(--paper); box-shadow: 0 22px 60px rgba(1, 18, 14, .28); }
+      .intro-card h2 { color: var(--forest); }
+      .taste-item { background: #e8e7dd; border-color: #d6d8cb; }
+      .taste-item:hover { background: #f8f4e9; border-color: #c8b77e; }
+      .feature-card { background: #f4f1e8; border-color: rgba(215, 193, 132, .3); }
+      .feature-copy h3 { color: var(--forest); }
+      .btn { background: var(--forest); }
+      .btn:hover { background: #174d41; }
+      .consent { background: rgba(4, 35, 30, .96); }
+
+      .hero-image {
+        background: var(--forest);
+      }
+
+      .hero-image-layer {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(2, 22, 18, .12), rgba(2, 22, 18, .01) 42%, rgba(2, 22, 18, .08)),
+          url('IMG/UBON.jpg') center 25%/cover no-repeat;
+        animation: hero-photo-enter 1.5s linear both;
+        will-change: opacity, transform;
+      }
+
+      @keyframes hero-photo-enter {
+        0% { opacity: .08; transform: scale(1.015); }
+        20% { opacity: .12; }
+        40% { opacity: .24; }
+        60% { opacity: .42; }
+        80% { opacity: .68; }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .hero-image-layer { animation: none; }
+      }
     </style>
   </head>
   <body>
-    <section class="hero">
-      <h1>อุบลราชธานีเมืองแห่งธรรมชาติและวัฒนธรรม</h1>
-      <p>จังหวัดที่มีทั้งทิวทัศน์ริมโขง อาหารท้องถิ่นอร่อยและเป็นเอกลักษณ์ และวัฒนธรรมอีสานที่ยังคงความอบอุ่นและมีชีวิตชีวาอยู่เสมอ</p>
-      <div class="chip-row">
-        <span class="chip">อาหารอีสาน</span>
-        <span class="chip">วัฒนธรรมท้องถิ่น</span>
-        <span class="chip">ธรรมชาติริมโขง</span>
-        <span class="chip">สถานที่ชมพระอาทิตย์</span>
-      </div>
+    <section class="hero" aria-label="ภาพแนะนำจังหวัดอุบลราชธานี">
+      <nav class="hero-topbar" aria-label="เมนูหลัก">
+        <div class="hero-menu">
+          <a href="#places">เรื่องราว</a>
+          <a href="#destinations">สถานที่</a>
+        </div>
+      </nav>
+      <div class="hero-image" aria-hidden="true"><div class="hero-image-layer"></div></div>
     </section>
 
     <main class="container">
-      <section class="intro-card">
-        <h2>ทำไมต้องมาอุบลราชธานี</h2>
-        <div class="intro-grid">
-          <div>
-            <p>อุบลราชธานีเป็นจังหวัดที่ให้ทั้งความงดงามของธรรมชาติและความอบอุ่นของวัฒนธรรมท้องถิ่น คุณจะได้สัมผัสลมอีสานที่แปลกใหม่จากเมืองใหญ่ พร้อมทั้งอาหารที่มีรสชาติชัดเจนและประเพณีที่ยังคงสืบทอดอย่างงดงาม</p>
-            <div class="taste-grid">
-              <div class="taste-item">
-                <h4>อาหารอร่อย</h4>
-                <p>ลิ้มลองเมนูพื้นเมืองอีสานที่มีรสจัดจ้าน อิ่มอร่อย และสะท้อนวัฒนธรรมของชาวบ้านได้อย่างชัดเจน</p>
-              </div>
-              <div class="taste-item">
-                <h4>วัฒนธรรมอันล้ำค่า</h4>
-                <p>ได้เห็นกิจกรรมและประเพณีท้องถิ่นที่คงไว้ซึ่งความเป็นไทยอีสานอย่างมีเสน่ห์และความเป็นธรรมชาติ</p>
+      <div class="drawer-summary">
+        <p><strong>เลือกเส้นทางของคุณ</strong>เปิดดูสถานที่เด่นของอุบลราชธานี แล้วค่อย ๆ วางแผนการเดินทางในจังหวะที่เป็นตัวเอง</p>
+        <div class="drawer-stats" aria-label="ข้อมูลสรุปสถานที่ท่องเที่ยว">
+          <div class="drawer-stat"><b>05</b><span>PLACES</span></div>
+          <div class="drawer-stat"><b>01</b><span>PROVINCE</span></div>
+          <div class="drawer-stat"><b>24/7</b><span>DISCOVER</span></div>
+        </div>
+      </div>
+      <div class="drawer-layout">
+        <aside class="drawer-side">
+          <span class="drawer-side-label">A SLOW JOURNEY</span>
+          <p>ปล่อยให้แม่น้ำโขงพาเราไปเจอเรื่องราวใหม่ ๆ</p>
+          <small>แสงเช้า อาหารอีสาน และเมืองที่ยังมีจังหวะของตัวเอง</small>
+        </aside>
+
+        <section class="intro-card" id="places">
+          <h2>ทำไมต้องมาอุบลราชธานี</h2>
+          <div class="intro-grid">
+            <div>
+              <p>อุบลราชธานีเป็นจังหวัดที่ให้ทั้งความงดงามของธรรมชาติและความอบอุ่นของวัฒนธรรมท้องถิ่น คุณจะได้สัมผัสลมอีสานที่แปลกใหม่จากเมืองใหญ่ พร้อมทั้งอาหารที่มีรสชาติชัดเจนและประเพณีที่ยังคงสืบทอดอย่างงดงาม</p>
+              <div class="taste-grid">
+                <div class="taste-item">
+                  <h4>อาหารอร่อย</h4>
+                  <p>ลิ้มลองเมนูพื้นเมืองอีสานที่มีรสจัดจ้าน อิ่มอร่อย และสะท้อนวัฒนธรรมของชาวบ้านได้อย่างชัดเจน</p>
+                </div>
+                <div class="taste-item">
+                  <h4>วัฒนธรรมอันล้ำค่า</h4>
+                  <p>ได้เห็นกิจกรรมและประเพณีท้องถิ่นที่คงไว้ซึ่งความเป็นไทยอีสานอย่างมีเสน่ห์และความเป็นธรรมชาติ</p>
+                </div>
               </div>
             </div>
+            <div>
+              <ul>
+                <li>ชิมอาหารอีสานที่มีรสชาติเด่นและเป็นเอกลักษณ์</li>
+                <li>สัมผัสประเพณีและวิถีชีวิตท้องถิ่นที่ยังคงความเรียบง่ายและอบอุ่น</li>
+                <li>สำรวจธรรมชาติริมแม่น้ำโขงและสถานที่ชมวิวที่โดดเด่น</li>
+                <li>เพลิดเพลินกับบรรยากาศที่ผสมผสานระหว่างเมืองและธรรมชาติอย่างลงตัว</li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <ul>
-              <li>ชิมอาหารอีสานที่มีรสชาติเด่นและเป็นเอกลักษณ์</li>
-              <li>สัมผัสประเพณีและวิถีชีวิตท้องถิ่นที่ยังคงความเรียบง่ายและอบอุ่น</li>
-              <li>สำรวจธรรมชาติริมแม่น้ำโขงและสถานที่ชมวิวที่โดดเด่น</li>
-              <li>เพลิดเพลินกับบรรยากาศที่ผสมผสานระหว่างเมืองและธรรมชาติอย่างลงตัว</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="feature-list">
-        <article class="feature-card">
+        <aside class="drawer-side">
+          <span class="drawer-side-label">A PLACE TO BEGIN</span>
+          <nav class="place-index" aria-label="สารบัญสถานที่ท่องเที่ยว">
+            <a href="#phatam">ผาแต้ม</a>
+            <a href="#threebo">สามพันโบก</a>
+            <a href="#hatstar">หาดชมดาว</a>
+            <a href="#ubon-zoo">สวนสัตว์อุบลราชธานี</a>
+            <a href="#moonwaterfall">น้ำตกแสงจันทร์</a>
+          </nav>
+        </aside>
+
+        <section class="feature-list" id="destinations">
+        <article class="feature-card" id="phatam">
           <div class="feature-copy">
             <h3>อุทยานแห่งชาติผาแต้ม</h3>
             <p>จุดชมพระอาทิตย์ขึ้นก่อนใครในประเทศไทย พร้อมวิวทิวทัศน์ที่น่าประทับใจและภาพเขียนสีโบราณที่มีเสน่ห์</p>
@@ -376,7 +868,7 @@
           </div>
         </article>
 
-        <article class="feature-card">
+        <article class="feature-card" id="threebo">
           <div class="feature-copy">
             <h3>สามพันโบก</h3>
             <p>แกรนด์แคนยอนเมืองไทยที่งดงามในช่วงน้ำลด และเป็นหนึ่งในจุดชมธรรมชาติริมแม่น้ำโขงที่สวยที่สุด</p>
@@ -389,7 +881,7 @@
           </div>
         </article>
 
-        <article class="feature-card">
+        <article class="feature-card" id="hatstar">
           <div class="feature-copy">
             <h3>หาดชมดาว</h3>
             <p>หาดหินริมแม่น้ำโขงที่มีลวดลายธรรมชาติและเหมาะกับการชมพระอาทิตย์ตกแบบเงียบงาม</p>
@@ -402,7 +894,7 @@
           </div>
         </article>
 
-        <article class="feature-card">
+        <article class="feature-card" id="ubon-zoo">
           <div class="feature-copy">
             <h3>สวนสัตว์อุบลราชธานี</h3>
             <p>ที่เที่ยวอุบลราชธานีสำหรับไปกับครอบครัว หรือเพื่อนกลุ่มใหญ่ โดยเฉพาะใครที่ชอบไปเที่ยวสวนสัตว์ไม่ควรพลาด เพราะว่า สวนสัตว์อุบลราชธานีที่นี้มีความอุดมสมบรูณ์ </p>
@@ -415,7 +907,7 @@
           </div>
         </article>
 
-        <article class="feature-card">
+        <article class="feature-card" id="moonwaterfall">
           <div class="feature-copy">
             <h3>น้ำตกแสงจันทร์</h3>
             <p>น้ำตกที่สร้างปรากฏการณ์ธรรมชาติอันน่าตื่นตาตื่นใจและเป็นหนึ่งในจุดเด่นของอุบลราชธานี</p>
@@ -428,7 +920,64 @@
           </div>
         </article>
       </section>
+      </div>
     </main>
+    <aside class="consent" id="motion-consent" aria-label="การตั้งค่าแอนิเมชัน">
+      <p><strong>เปิดประสบการณ์การเคลื่อนไหวไหม?</strong>อนุญาตคุกกี้เพื่อจำการตั้งค่าแอนิเมชันของคุณ</p>
+      <div class="consent-actions">
+        <button class="consent-minimal" type="button" data-consent="minimal">แบบเรียบ</button>
+        <button class="consent-allow" type="button" data-consent="enhanced">อนุญาต</button>
+      </div>
+    </aside>
+    <script>
+      const consent = document.querySelector('#motion-consent');
+      const consentKey = 'ubon-motion-consent';
+      let savedConsent = null;
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const target = document.querySelector(link.getAttribute('href'));
+          if (!target) return;
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      });
+
+      try {
+        savedConsent = localStorage.getItem(consentKey);
+      } catch (error) {
+        savedConsent = null;
+      }
+
+      const applyConsent = (value) => {
+        document.documentElement.dataset.motion = value;
+        try {
+          localStorage.setItem(consentKey, value);
+        } catch (error) {
+        }
+        consent.classList.add('is-hidden');
+      };
+
+      if (savedConsent) applyConsent(savedConsent);
+      consent.querySelectorAll('[data-consent]').forEach((button) => {
+        button.addEventListener('click', () => applyConsent(button.dataset.consent));
+      });
+
+      const updateDrawerProgress = () => {
+        const progress = Math.min(window.scrollY / (window.innerHeight * 0.72), 1);
+        document.documentElement.style.setProperty('--drawer-progress', progress.toFixed(3));
+      };
+
+      let drawerFrame;
+      window.addEventListener('scroll', () => {
+        if (drawerFrame) return;
+        drawerFrame = requestAnimationFrame(() => {
+          updateDrawerProgress();
+          drawerFrame = null;
+        });
+      }, { passive: true });
+      updateDrawerProgress();
+    </script>
   </body>
 </html>
 
